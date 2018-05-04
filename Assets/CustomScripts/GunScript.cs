@@ -5,102 +5,158 @@ using UnityEngine;
 
 public class GunScript : MonoBehaviour {
 
-    GunParameters params = new GunParameters();
+    [SerializeField]
+    GunParameters gunParameters;
 
     [SerializeField]
-    bool isHitscan = true;
-
-    [SerializeField]
-    int currentAmmo;
-
-    [SerializeField]
-    bool isProjectileExplosive;
-
-    [SerializeField]
-    float projectileFuse = 5.0f;
-
-    [SerializeField]
-    float projectileSpeed = 15f;
-
-    [SerializeField]
-    float projectileForce = 5f;
-
     bool isReloading = false;
 
-    [SerializeField]
-    GameObject explosiveProjectile;
+    float nextTimeToFire = 0.0f;
 
-    [SerializeField]
-    GameObject implosiveProjectile;
+    bool isEquiped = false;
 
-
+    float unequipThrow = 50f;
+    
 	// Use this for initialization
-	void Start () {
+	public void Equip()
+    {
+        isReloading = false;
+        isEquiped = true;
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.Euler(Vector3.zero);
+        GetComponent<SphereCollider>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
+        GetComponent<Rigidbody>().useGravity = false;
+        GetComponent<Rigidbody>().isKinematic = true;
+    }
+
+    public void Unequip()
+    {
+        isEquiped = false;
+        GetComponent<SphereCollider>().enabled = true;
+        GetComponent<BoxCollider>().enabled = true;
+        GetComponent<Rigidbody>().useGravity = true;
+        GetComponent<Rigidbody>().isKinematic = false;
+        transform.parent = null;
+        GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * unequipThrow);
+    }
+
+    // Update is called once per frame
+    void Update() {
+       nextTimeToFire = nextTimeToFire + Time.deltaTime;
+
+        if (isReloading || !isEquiped)
+        {
+            return;
+        }
+
+        if (gunParameters.currentAmmo <= 0)
+        {
+            StartCoroutine(Reload());
+            return;
+        }
+
+		if(Input.GetButton("Fire1") && (nextTimeToFire > gunParameters.rateOfFire))
+        {
+            Fire();
+            nextTimeToFire = 0f;
+        }
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    bool GetIsGunHitscan()
-    {
-        return isHitscan;
-    }
-
-    /// <summary>
-    /// Use this function to set parameters for  weapons
-    /// </summary>
-    /// <param name="_maxAmmo"></param>
-    /// <param name="_rateOfFire"></param>
-    /// <param name="_reloadSpeed"></param>
-    void SetWeaponParameters()
-    {
-
-    }
-
-    void SetProjectileParameters(bool _isProjectiveExplosive, float _projectileFuse, float _projectileSpeed, float _projectileForce)
-    {
-        isProjectileExplosive = _isProjectiveExplosive;
-        projectileFuse = _projectileFuse;
-        projectileSpeed = _projectileSpeed;
-        projectileForce = _projectileForce;
-    }
 
     public void Fire()
     {
         if (!isReloading)
         {
-            if(isHitscan)
+            gunParameters.currentAmmo -= 1;
+
+            if (gunParameters.gunType == GunType.Hitscan)
             {
                 FireRaycast();
             } else
             {
                 FireProjectile();
-            }
+            }            
         }
     }
 
     void FireRaycast()
     {
+        RaycastHit hit;
 
-    }
+        bool didRaycastHit = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, gunParameters.hitscanRange);
 
-
-    void FireProjectile()
-    {
-        if(isProjectileExplosive)
+        if(didRaycastHit)
         {
+            Health healthScript = hit.collider.gameObject.GetComponent<Health>();
 
-        } else
-        {
+            if(healthScript != null)
+            {
+                healthScript.DealDamage(gunParameters.damage);
+            }
 
+            ParticleSystem muzzleFlash = GetComponentInChildren<ParticleSystem>();
+
+            if(muzzleFlash != null)
+            {
+                muzzleFlash.Play();
+            }
+
+            if(hit.rigidbody != null)
+            {
+                hit.rigidbody.AddForce(Camera.main.transform.forward * (gunParameters.damage * gunParameters.bulletImpactModifier));
+            }
         }
     }
 
-     GetWeaponParameters
+    void FireProjectile()
+    {
+        Vector3 spawn = gameObject.transform.Find("ProjectileSpawn").gameObject.transform.position;
+        ProjectileParameters projectileParams = gunParameters.projectileParameters;
 
+        if (spawn != null)
+        {
+            GameObject projectile = Instantiate(projectileParams.GetProjectile(), spawn, Quaternion.Euler(transform.forward));
+            Rigidbody rb = projectile.gameObject.GetComponent<Rigidbody>();
+            
+            if(rb != null)
+            {
+                rb.AddForce(transform.forward * projectileParams.shotForce);
+                ProjectileScript projectileScript = projectile.GetComponent<ProjectileScript>();
+                if(projectileScript != null)
+                {
+                    projectileScript.SetParameters(projectileParams.type, projectileParams.fuse, projectileParams.detonationForce, projectileParams.radius, projectileParams.damage);
+                } else
+                {
+                    Destroy(projectile);
+                    Debug.Log("No projectile script attached, destroying projectile");
+                }
+            }
+        }
+        
+    }
 
+    IEnumerator Reload()
+    {
+        isReloading = true;
+
+        yield return new WaitForSeconds(gunParameters.reloadSpeed);
+
+        if (isEquiped)
+        {
+            gunParameters.currentAmmo = gunParameters.maxAmmo;
+            isReloading = false;
+        }
+    }
+
+    public void SetGunParameters(GunParameters parametersToSet)
+    {
+        gunParameters = parametersToSet;
+    }
+
+    public GunParameters GetGunParameters()
+    {
+        return gunParameters;
+    }
 
 
 }

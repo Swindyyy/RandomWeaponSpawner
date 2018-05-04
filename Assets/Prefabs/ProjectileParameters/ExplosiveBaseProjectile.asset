@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0f48f48465afe14f9623514ca0b83b6, type: 3}
+  m_Name: ExplosiveBaseProjectile
+  m_EditorClassIdentifier: 
+  kineticProjectile: {fileID: 1270966089576052, guid: 1db41f581213db248a649c2c0652679c,
+    type: 2}
+  explosiveProjectile: {fileID: 1993297813393132, guid: d749944cd3b172a42a3dc7b9ad2038a1,
+    type: 2}
+  implosiveProjectile: {fileID: 1181536286327588, guid: c90aecc39e439a749bb3ebda6498182a,
+    type: 2}
+  type: 1
+  fuse: 2
+  speed: 15
+  shotForce: 157
+  detonationForce: 500
+  radius: 6
+  damage: 100

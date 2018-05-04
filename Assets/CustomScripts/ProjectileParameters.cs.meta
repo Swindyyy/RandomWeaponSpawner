@@ -5,7 +5,13 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - kineticProjectile: {fileID: 1270966089576052, guid: 1db41f581213db248a649c2c0652679c,
+      type: 2}
+  - explosiveProjectile: {fileID: 1993297813393132, guid: d749944cd3b172a42a3dc7b9ad2038a1,
+      type: 2}
+  - implosiveProjectile: {fileID: 1181536286327588, guid: c90aecc39e439a749bb3ebda6498182a,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

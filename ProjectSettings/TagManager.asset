@@ -7,6 +7,8 @@ TagManager:
   - Gun
   - GunProjectileSpawn
   - Projectile
+  - Inventory
+  - GunWall
   layers:
   - Default
   - TransparentFX
@@ -16,9 +18,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Gun
+  - Player
+  - Projectile
   - 
   - 
   - 

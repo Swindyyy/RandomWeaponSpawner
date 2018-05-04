@@ -2,17 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GunType { Hitscan, Projectile }
+
 [System.Serializable]
-public class GunParameters {
+[CreateAssetMenu(fileName = "Gun parameters", menuName = "Gun/Gun Parameters")]
+public class GunParameters : ScriptableObject {
+
+    public GunType gunType = GunType.Hitscan;
+    public int damage;
+    public int currentAmmo;
+    public int maxAmmo;
+    public float rateOfFire;
+    public float reloadSpeed;
+    public float hitscanRange;
+    public float bulletImpactModifier = 15f;
+    public GameObject currentGunObject;
+    public Sprite gunIcon;
+    public Vector3 camOffset;
 
 
-    int damage { get; set; }
-   
-    int maxAmmo { get; set; }
+    
 
-    float rateOfFire { get; set; }
-
-    float reloadSpeed { get; set; }
+    public ProjectileParameters projectileParameters;
 
     public GunParameters(int _damage, int _maxAmmo, float _rateOfFire, float _reloadSpeed)
     {
