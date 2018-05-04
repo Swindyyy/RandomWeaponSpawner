@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.162
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17994738, g: 0.20329049, b: 0.2400164, a: 0.162}
+  m_IndirectSpecularColor: {r: 0.17994711, g: 0.20329002, b: 0.24001601, a: 0.162}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -677,7 +677,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4799792857417056, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1972371198553750, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_Name
@@ -1089,7 +1089,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &936373524
 Prefab:
@@ -1128,7 +1128,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4799792857417056, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_RootOrder
-      value: 18
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 1972371198553750, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_Name
@@ -1684,7 +1684,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4799792857417056, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
@@ -1800,7 +1800,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4799792857417056, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1972371198553750, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_Name
@@ -2073,7 +2073,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4799792857417056, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1972371198553750, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_Name
@@ -2097,6 +2097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace72a1ea0042514db95ac71dd9928dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupTimeLimit: 2.5
 --- !u!1 &1494141718
 GameObject:
   m_ObjectHideFlags: 0
@@ -2321,7 +2322,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4799792857417056, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1972371198553750, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_Name
@@ -2367,7 +2368,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4799792857417056, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1972371198553750, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_Name
@@ -2762,7 +2763,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4799792857417056, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1972371198553750, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_Name
@@ -2808,7 +2809,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4799792857417056, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1972371198553750, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
       propertyPath: m_Name
@@ -2817,3 +2818,61 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a4086ff6b74f3324cbd1f27066be69a0, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2009433423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2009433425}
+  - component: {fileID: 2009433424}
+  m_Layer: 0
+  m_Name: WeaponSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2009433424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2009433423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d5da199e46da040bd30b00ce431362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunSpawnerInterval: 10
+  countPeriod: 0.1
+  currentTimer: 0
+  gunDamageVariationModifier: 0.5
+  gunMaxAmmoVariationModifier: 0.5
+  gunRateOfFireVariationModifier: 0.5
+  gunReloadSpeedVariationModifier: 0.5
+  gunHitscanRangeVariationModifier: 0.5
+  listOfGunObjects:
+  - {fileID: 1294672646082164, guid: 8d43e76b346f2f8448846e9211629d15, type: 2}
+  - {fileID: 1374600452982646, guid: 57bf5071e0a1c8947b8918a8f96184a6, type: 2}
+  - {fileID: 1671029925390012, guid: 119551172e2002344983c075ab97ef79, type: 2}
+  - {fileID: 1140876443549640, guid: 63e5773841590434393fe441aa6935fa, type: 2}
+  projectileDamageModifier: 0.5
+  projectileFuseModifier: 0.5
+  projectileForceModifier: 0.5
+  projectileRadiusModifier: 0.5
+  projectileSpeedModifier: 0.5
+--- !u!4 &2009433425
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2009433423}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16.2, y: 0.56, z: -9.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

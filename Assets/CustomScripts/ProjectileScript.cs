@@ -21,8 +21,6 @@ public class ProjectileScript : MonoBehaviour {
 
 
 
-
-
     void OnCollisionEnter(Collision coll)
     {
         /* if (type == ProjectileType.Kinetic)
@@ -44,7 +42,7 @@ public class ProjectileScript : MonoBehaviour {
         GameObject explosionEffectInstance = Instantiate(explosionEffect, transform.position, transform.rotation);
         ParticleSystem[] explosionParticleSystems = explosionEffectInstance.GetComponents<ParticleSystem>();
         ParticleSystem[] childExplosionParticleSystems = explosionEffectInstance.GetComponentsInChildren<ParticleSystem>();
-        float duration = explosionParticleSystems[0].duration;
+        float duration = explosionParticleSystems[0].main.duration;
 
         foreach(ParticleSystem system in explosionParticleSystems)
         {

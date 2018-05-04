@@ -110,11 +110,12 @@ public class GunScript : MonoBehaviour {
 
     void FireProjectile()
     {
-        Vector3 spawn = gameObject.transform.Find("ProjectileSpawn").gameObject.transform.position;
+        GameObject projectileSpawnObject = gameObject.transform.Find("ProjectileSpawn").gameObject;        
         ProjectileParameters projectileParams = gunParameters.projectileParameters;
 
-        if (spawn != null)
+        if (projectileSpawnObject != null)
         {
+            Vector3 spawn = projectileSpawnObject.transform.position;
             GameObject projectile = Instantiate(projectileParams.GetProjectile(), spawn, Quaternion.Euler(transform.forward));
             Rigidbody rb = projectile.gameObject.GetComponent<Rigidbody>();
             

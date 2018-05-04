@@ -18,6 +18,17 @@ public class ProjectileParameters : ScriptableObject {
     public float detonationForce = 5f;
     public float radius = 10f;
     public int damage = 100;
+   
+    public ProjectileParameters(ProjectileType _type, float _fuse, float _speed, float _detonateForce, float _radius, int _damage)
+    {
+        type = _type;
+        fuse = _fuse;
+        speed = _speed;
+        detonationForce = _detonateForce;
+        radius = _radius;
+        damage = _damage;
+
+    }
 
     public GameObject GetProjectile()
     {

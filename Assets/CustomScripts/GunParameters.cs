@@ -19,18 +19,18 @@ public class GunParameters : ScriptableObject {
     public GameObject currentGunObject;
     public Sprite gunIcon;
     public Vector3 camOffset;
-
-
-    
-
     public ProjectileParameters projectileParameters;
 
-    public GunParameters(int _damage, int _maxAmmo, float _rateOfFire, float _reloadSpeed)
+    public GunParameters(GunType _type, int _damage, int _maxAmmo, float _rateOfFire, float _reloadSpeed, float _hitscanRange, GameObject _object, ProjectileParameters _projectile)
     {
+        gunType = _type;
         damage = _damage;
         maxAmmo = _maxAmmo;
         rateOfFire = _rateOfFire;
         reloadSpeed = _reloadSpeed;
+        hitscanRange = _hitscanRange;
+        currentGunObject = _object;
+        projectileParameters = _projectile;
     }
 
 
