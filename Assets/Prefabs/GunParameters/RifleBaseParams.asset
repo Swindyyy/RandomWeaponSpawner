@@ -23,4 +23,5 @@ MonoBehaviour:
     type: 2}
   gunIcon: {fileID: 0}
   camOffset: {x: 0.175, y: -0.15, z: 0.3}
-  projectileParameters: {fileID: 0}
+  projectileParameters: {fileID: 11400000, guid: a53f358626b22844da0e7536abc9fca8,
+    type: 2}

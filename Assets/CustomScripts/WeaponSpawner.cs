@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public enum GunCriteriaToRandomise { GunType, Damage, MaxAmmo, RateOfFire, ReloadSpeed, HitscanRange, MeshObject}
 
@@ -55,6 +56,9 @@ public class WeaponSpawner : MonoBehaviour {
     bool weaponSpawned = false;
 
     bool timerActive = false;
+
+    [SerializeField]
+    TextMeshPro counterText;
 	
 	// Update is called once per frame
 	void Update () {
@@ -63,13 +67,13 @@ public class WeaponSpawner : MonoBehaviour {
             if(currentTimer > gunSpawnerInterval)
             {
                 StartCoroutine(CreateNewGun());
-                weaponSpawned = true;
+                
+                counterText.text = "Weapon spawned";
             }
             else {
                 StartCoroutine(Countdown());
-            }
-
-            
+                counterText.text = "New weapon spawning: " + (int)(gunSpawnerInterval - currentTimer);
+            }            
         }         
 	}
 
@@ -99,8 +103,17 @@ public class WeaponSpawner : MonoBehaviour {
         {
             InventoryScript inventory = inventoryObject.GetComponent<InventoryScript>();
             List<GunParameters> listOfGunParameters = inventory.GetWeaponsInInventory();
+            int numOfEquippedGuns = 0;
 
-            if (listOfGunParameters.Count >= 2)
+            foreach(GunParameters gp in listOfGunParameters)
+            {
+                if(gp != null)
+                {
+                    numOfEquippedGuns += 1;
+                }
+            }
+
+            if (numOfEquippedGuns >= 2)
             {
                 gunParameters1 = listOfGunParameters[0];
                 gunParameters2 = listOfGunParameters[1];
@@ -115,9 +128,15 @@ public class WeaponSpawner : MonoBehaviour {
                 ProjectileParameters newProjectileParams = GenerateNewProjectileParameters(gunParameters1.projectileParameters, gunParameters2.projectileParameters);
                 newParameters = new GunParameters(newGunType, newDamage, newMaxAmmo, newRateOfFire, newReloadSpeed, newHitscanRange, newGameObject, newProjectileParams);
             }
-            else if (listOfGunParameters.Count == 1)
+            else if (numOfEquippedGuns == 1)
             {
-                newParameters = listOfGunParameters[0];
+                foreach(GunParameters gp in listOfGunParameters)
+                {
+                    if(gp != null)
+                    {
+                        newParameters = gp;
+                    }
+                }
 
             }
         } 
@@ -148,9 +167,11 @@ public class WeaponSpawner : MonoBehaviour {
             gunToSpawn.transform.parent = this.gameObject.transform;
             gunToSpawn.transform.localPosition = Vector3.zero;
             gunToSpawn.GetComponent<GunScript>().SetGunParameters(parametersToUse);
+            weaponSpawned = true;
         } else
         {
             Debug.Log("NULL NEW PARAMTERS, CANNOT CREATE NEW GUN");
+            weaponSpawned = false;
         }
     }
 

@@ -20,7 +20,7 @@ MonoBehaviour:
   type: 0
   fuse: 5
   speed: 200
-  shotForce: 20
+  shotForce: 2000
   detonationForce: 5
   radius: 1
   damage: 125

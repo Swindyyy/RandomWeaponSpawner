@@ -15,7 +15,7 @@ public class GunScript : MonoBehaviour {
 
     bool isEquiped = false;
 
-    float unequipThrow = 50f;
+    float unequipThrow = 250f;
     
 	// Use this for initialization
 	public void Equip()
@@ -116,7 +116,8 @@ public class GunScript : MonoBehaviour {
         if (projectileSpawnObject != null)
         {
             Vector3 spawn = projectileSpawnObject.transform.position;
-            GameObject projectile = Instantiate(projectileParams.GetProjectile(), spawn, Quaternion.Euler(transform.forward));
+            GameObject projectile = Instantiate(projectileParams.GetProjectile(), spawn, Quaternion.Euler(Camera.main.transform.forward));
+            projectile.transform.rotation = Quaternion.Euler(Camera.main.transform.forward);
             Rigidbody rb = projectile.gameObject.GetComponent<Rigidbody>();
             
             if(rb != null)

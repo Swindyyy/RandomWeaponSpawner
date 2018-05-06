@@ -7,7 +7,11 @@ public class HUDScript : MonoBehaviour {
 
     public static HUDScript HUDSingleton;
     public GameObject pickupWeapon;
+    public GameObject hud;
+    public GameObject inventory;
+    bool isInventoryActive = false;
 
+    bool isOpenInvAxisInUse = false;
     private void Awake()
     {
         if(HUDSingleton == null)
@@ -19,9 +23,24 @@ public class HUDScript : MonoBehaviour {
         }
     }
 
+
     // Update is called once per frame
-    void Update () {
-		
+    void FixedUpdate () {
+		if(Input.GetAxis("OpenInventory") > 0)
+        {
+            if (isOpenInvAxisInUse == false)
+            {
+                isInventoryActive = !isInventoryActive;
+                hud.SetActive(!isInventoryActive);
+                inventory.SetActive(isInventoryActive);
+                isOpenInvAxisInUse = true;
+            }
+        }
+
+        if(Input.GetAxis("OpenInventory") == 0)
+        {
+            isOpenInvAxisInUse = false;
+        }
 	}
 
     public void EnablePickupWeaponText()

@@ -33,6 +33,8 @@ public class InventoryScript : MonoBehaviour {
             {
                 EquipWeapon();
             }
+
+            return;
         }
 
         if (Input.GetAxis("WeaponSlot2") > 0 && currentWeaponIndex != 1)
@@ -44,6 +46,8 @@ public class InventoryScript : MonoBehaviour {
             {
                 EquipWeapon();
             }
+
+            return;
         }
 
         if(Input.GetAxis("UnequipWeapon") > 0)
@@ -103,6 +107,7 @@ public class InventoryScript : MonoBehaviour {
             currentWeapon = weaponToEquipObject;
             weaponToEquipObject.GetComponent<GunScript>().Equip();
             gameObject.transform.localPosition = currentWeapon.GetComponent<GunScript>().GetGunParameters().camOffset;
+            weaponToEquipObject.GetComponent<GunScript>().SetGunParameters(weaponToEquip);
         } else
         {
             Debug.Log("No weapon to equip");

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunType: 0
   damage: 14
-  currentAmmo: 8
+  currentAmmo: 12
   maxAmmo: 12
   rateOfFire: 0.1
   reloadSpeed: 1.25
@@ -23,4 +23,5 @@ MonoBehaviour:
     type: 2}
   gunIcon: {fileID: 0}
   camOffset: {x: 0.09, y: -0.18, z: 0.36}
-  projectileParameters: {fileID: 0}
+  projectileParameters: {fileID: 11400000, guid: 8440bf1a6a04afd43ac7ab87427f9101,
+    type: 2}

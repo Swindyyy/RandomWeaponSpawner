@@ -23,11 +23,18 @@ public class ProjectileScript : MonoBehaviour {
 
     void OnCollisionEnter(Collision coll)
     {
-        /* if (type == ProjectileType.Kinetic)
+        if (type == ProjectileType.Kinetic)
         {
+            try
+            {
+                coll.gameObject.GetComponent<Health>().DealDamage(detonationDamage);
+            } catch
+            {
+                Debug.Log("NO HEALTH SCRIPT");
+            }
             Destroy(gameObject);
             Debug.Log("DESTROYING PROJECTILE");
-        } */
+        }
     }
 
     IEnumerator SetFuse()
@@ -90,7 +97,7 @@ public class ProjectileScript : MonoBehaviour {
         detonationRadius = radiusToSet;
         detonationDamage = damageToSet;
 
-        if (!fuseSet)
+        if (!fuseSet && type != ProjectileType.Kinetic)
         {
             StartCoroutine(SetFuse());
             fuseSet = true;
