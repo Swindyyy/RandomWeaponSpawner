@@ -53,7 +53,7 @@ public class WeaponSpawner : MonoBehaviour {
     [SerializeField]
     float projectileSpeedModifier = 0.5f;
 
-    bool weaponSpawned = false;
+    public bool weaponSpawned = false;
 
     bool timerActive = false;
 
@@ -66,9 +66,9 @@ public class WeaponSpawner : MonoBehaviour {
         {
             if(currentTimer > gunSpawnerInterval)
             {
-                StartCoroutine(CreateNewGun());
-                
+                StartCoroutine(CreateNewGun());                
                 counterText.text = "Weapon spawned";
+                currentTimer = 0f;
             }
             else {
                 StartCoroutine(Countdown());
@@ -167,6 +167,7 @@ public class WeaponSpawner : MonoBehaviour {
             gunToSpawn.transform.parent = this.gameObject.transform;
             gunToSpawn.transform.localPosition = Vector3.zero;
             gunToSpawn.GetComponent<GunScript>().SetGunParameters(parametersToUse);
+            gunToSpawn.tag = "GeneratedGun";
             weaponSpawned = true;
         } else
         {

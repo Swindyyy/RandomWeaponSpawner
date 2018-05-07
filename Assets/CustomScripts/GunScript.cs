@@ -11,14 +11,21 @@ public class GunScript : MonoBehaviour {
     [SerializeField]
     bool isReloading = false;
 
+    [SerializeField]
+    AudioSource firingSound;
+
     float nextTimeToFire = 0.0f;
 
     bool isEquiped = false;
 
     float unequipThrow = 250f;
-    
-	// Use this for initialization
-	public void Equip()
+
+    private void Start()
+    {
+        firingSound = GetComponent<AudioSource>();
+    }
+    // Use this for initialization
+    public void Equip()
     {
         isReloading = false;
         isEquiped = true;
@@ -68,6 +75,7 @@ public class GunScript : MonoBehaviour {
         if (!isReloading)
         {
             gunParameters.currentAmmo -= 1;
+            firingSound.Play();
 
             if (gunParameters.gunType == GunType.Hitscan)
             {
@@ -81,6 +89,7 @@ public class GunScript : MonoBehaviour {
 
     void FireRaycast()
     {
+        
         RaycastHit hit;
 
         bool didRaycastHit = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, gunParameters.hitscanRange);

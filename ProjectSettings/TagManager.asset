@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - Inventory
   - GunWall
+  - GeneratedGun
   layers:
   - Default
   - TransparentFX

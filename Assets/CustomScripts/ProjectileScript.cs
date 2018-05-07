@@ -17,12 +17,20 @@ public class ProjectileScript : MonoBehaviour {
     [SerializeField]
     GameObject explosionEffect;
 
+    [SerializeField]
+    AudioSource explosionNoise;
+
+
     bool fuseSet = false;
 
-
+    private void Start()
+    {
+        explosionNoise = GetComponent<AudioSource>();
+    }
 
     void OnCollisionEnter(Collision coll)
     {
+        Debug.Log("type: " + type.ToString());
         if (type == ProjectileType.Kinetic)
         {
             try
@@ -46,6 +54,7 @@ public class ProjectileScript : MonoBehaviour {
 
     void Detonate()
     {
+        explosionNoise.Play();
         GameObject explosionEffectInstance = Instantiate(explosionEffect, transform.position, transform.rotation);
         ParticleSystem[] explosionParticleSystems = explosionEffectInstance.GetComponents<ParticleSystem>();
         ParticleSystem[] childExplosionParticleSystems = explosionEffectInstance.GetComponentsInChildren<ParticleSystem>();
@@ -87,11 +96,13 @@ public class ProjectileScript : MonoBehaviour {
             }
         }
 
-        Destroy(gameObject);
+        GetComponent<MeshRenderer>().enabled = false;
+        Destroy(gameObject, 1f);
     }
 
     public void SetParameters(ProjectileType typeToSet, float fuseToSet, float forceToSet, float radiusToSet, int damageToSet)
     {
+        type = typeToSet;
         projectileFuse = fuseToSet;
         detonationForce = forceToSet;
         detonationRadius = radiusToSet;

@@ -16,7 +16,7 @@ public class GunPickup : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Gun") || other.gameObject.CompareTag("GunWall"))
+        if (other.gameObject.CompareTag("Gun") || other.gameObject.CompareTag("GunWall") || other.gameObject.CompareTag("GeneratedGun"))
         {
             HUDScript.HUDSingleton.EnablePickupWeaponText();
         }
@@ -24,7 +24,7 @@ public class GunPickup : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.CompareTag("Gun") || other.gameObject.CompareTag("GunWall"))
+        if(other.gameObject.CompareTag("Gun") || other.gameObject.CompareTag("GunWall") || other.gameObject.CompareTag("GeneratedGun"))
         {
             HUDScript.HUDSingleton.DisablePickupWeaponText();
         }
@@ -32,7 +32,7 @@ public class GunPickup : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Gun") || other.gameObject.CompareTag("GunWall"))
+        if (other.gameObject.CompareTag("Gun") || other.gameObject.CompareTag("GunWall") || other.gameObject.CompareTag("GeneratedGun"))
         {
             if (Input.GetAxis("EquipWeapon") > 0  && pickupTime > pickupTimeLimit)
             {
@@ -41,6 +41,16 @@ public class GunPickup : MonoBehaviour {
                 GameObject.FindGameObjectWithTag("Inventory").GetComponent<InventoryScript>().AddWeaponToInventory(gunToEquip);
                 if (other.gameObject.CompareTag("Gun"))
                 {
+                    Destroy(other.gameObject);
+                } else if(other.gameObject.CompareTag("GeneratedGun"))
+                {
+                    try
+                    {
+                        other.gameObject.transform.parent.gameObject.GetComponent<WeaponSpawner>().weaponSpawned = false;
+                    } catch
+                    {
+                        Debug.Log("Can't reset weapon spawner, object cannot be found");
+                    }
                     Destroy(other.gameObject);
                 }
             }

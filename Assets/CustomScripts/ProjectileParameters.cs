@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public enum ProjectileType { Kinetic, Explosive, Implosive }
 
@@ -28,10 +29,26 @@ public class ProjectileParameters : ScriptableObject {
         radius = _radius;
         damage = _damage;
 
+        ImportProjectileDefaults();
+    }
+
+    private void Awake()
+    {
+        
+    }
+
+    void ImportProjectileDefaults()
+    {
+        kineticProjectile = Resources.Load("prefabs/kineticprojectile") as GameObject;
+        explosiveProjectile = Resources.Load("prefabs/explosiveprojectile") as GameObject;
+        implosiveProjectile = Resources.Load("prefabs/explosiveprojectile") as GameObject;
     }
 
     public GameObject GetProjectile()
     {
+
+        ImportProjectileDefaults();
+
         switch (type)
         {
             case ProjectileType.Explosive:
