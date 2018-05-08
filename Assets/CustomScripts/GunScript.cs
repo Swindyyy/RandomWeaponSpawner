@@ -131,7 +131,7 @@ public class GunScript : MonoBehaviour {
             
             if(rb != null)
             {
-                rb.AddForce(transform.forward * projectileParams.shotForce);
+                rb.AddForce(transform.forward * projectileParams.speed);
                 ProjectileScript projectileScript = projectile.GetComponent<ProjectileScript>();
                 if(projectileScript != null)
                 {

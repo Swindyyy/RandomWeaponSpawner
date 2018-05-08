@@ -298,7 +298,7 @@ public class WeaponSpawner : MonoBehaviour {
         float range2 = GenerateNewValueBasedOffValueAndModifier(currentValue2, projectileForceModifier);
 
         float newRange = (range1 + range2) / 2;
-        return newRange;
+        return 200f + newRange;
     }
 
     float GenerateNewProjectileRadius(float currentValue1, float currentValue2)
@@ -316,7 +316,7 @@ public class WeaponSpawner : MonoBehaviour {
         float range2 = GenerateNewValueBasedOffValueAndModifier(currentValue2, projectileSpeedModifier);
 
         float newRange = (range1 + range2) / 2;
-        return newRange;
+        return 200f + newRange;
     }
 
     int GenerateNewProjectileDamage(int currentValue1, int currentValue2)
